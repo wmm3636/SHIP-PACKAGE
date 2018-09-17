@@ -48,15 +48,26 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     func setRootUIwindow(){
+        
+        let menuViewController = storyboard!.instantiateViewController(withIdentifier: "LeftSidePanelVC") as! LeftSidePanelVC
+        
         if appDelegate.cureentuserType == .custmer{
-            let _sideMenuController = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
+            
+            let contentViewController = storyboard!.instantiateViewController(withIdentifier: "CustomerHomeVC")
+
+            let _sideMenuController = SideMenuController(contentViewController: contentViewController,
+                                                         menuViewController: menuViewController)
             appDelegate.window?.rootViewController = _sideMenuController
             appDelegate.window?.makeKeyAndVisible()
             
             present(_sideMenuController, animated: false, completion: nil)
 
         }else{
-            let _sideMenuController = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
+            let contentViewController = self.storyboard?.instantiateViewController(withIdentifier: "DriverVC") as! DriverVC
+
+            let _sideMenuController = SideMenuController(contentViewController: contentViewController,
+                                                         menuViewController: menuViewController)
+            
             
             appDelegate.window?.rootViewController = _sideMenuController
             appDelegate.window?.makeKeyAndVisible()

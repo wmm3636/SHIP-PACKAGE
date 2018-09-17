@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L1o-kC-7Na">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L1o-kC-7Na">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,19 +21,18 @@
                         <viewLayoutGuide key="safeArea" id="gan-6q-Xlh"/>
                     </view>
                     <connections>
-                        <segue destination="qne-Kr-64t" kind="custom" identifier="SideMenu.Content" customClass="SideMenuSegue" customModule="SideMenuSwift" id="TSd-23-Vot"/>
                         <segue destination="NZX-fe-wQj" kind="custom" identifier="SideMenu.Menu" customClass="SideMenuSegue" customModule="SideMenuSwift" id="kiU-FM-bAK"/>
                         <segue destination="nfY-mG-L4o" kind="custom" identifier="" customClass="SideMenuSegue" customModule="SideMenuSwift" id="B8D-5x-RfG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clB-EG-xCr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957.5999999999999" y="74.630541871921181"/>
+            <point key="canvasLocation" x="1545" y="-253"/>
         </scene>
         <!--DriverVC-->
         <scene sceneID="157-QI-Jct">
             <objects>
-                <viewController storyboardIdentifier="DriverVC" id="nfY-mG-L4o" customClass="DriverVC" customModule="ShipPackages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DriverVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nfY-mG-L4o" customClass="DriverVC" customModule="ShipPackages" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CcJ-QA-27h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,7 +59,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5D2-EM-xyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1958" y="-685"/>
+            <point key="canvasLocation" x="2753" y="-752"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="sIA-HK-NbI">
@@ -82,7 +79,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1fI-zJ-LKG">
-                                            <rect key="frame" x="37" y="241.66666666666669" width="300" height="285.00000000000006"/>
+                                            <rect key="frame" x="37.666666666666657" y="241.66666666666669" width="300" height="285.00000000000006"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gfF-TI-Lxw">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="145"/>
@@ -97,7 +94,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PACKAGES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUS-Cz-gUU">
-                                                                    <rect key="frame" x="98.666666666666643" y="0.0" width="201.33333333333337" height="43"/>
+                                                                    <rect key="frame" x="98.6666666666667" y="0.0" width="201.33333333333337" height="43"/>
                                                                     <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="35"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -354,13 +351,13 @@
         <!--Left Side PanelVC-->
         <scene sceneID="DDY-H1-uwe">
             <objects>
-                <viewController storyboardIdentifier="LeftSidePanelVC" id="NZX-fe-wQj" customClass="LeftSidePanelVC" customModule="ShipPackages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeftSidePanelVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NZX-fe-wQj" customClass="LeftSidePanelVC" customModule="ShipPackages" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xX3-Cy-Q8F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lk8-SJ-OFm">
-                                <rect key="frame" x="0.0" y="44" width="375" height="128"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="129"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgP-0I-NGj">
                                         <rect key="frame" x="20" y="46" width="88" height="37"/>
@@ -377,7 +374,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s3x-F0-ggo">
-                                <rect key="frame" x="0.0" y="172" width="375" height="390"/>
+                                <rect key="frame" x="0.0" y="173" width="375" height="390"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="390" id="YEN-eW-JBJ"/>
@@ -428,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9TB-bt-Lcn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3053.5999999999999" y="529.80295566502468"/>
+            <point key="canvasLocation" x="2753" y="718"/>
         </scene>
         <!--Contac UsVC-->
         <scene sceneID="j2I-gF-z7p">
@@ -460,7 +457,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact us" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHj-h4-8po">
-                                            <rect key="frame" x="102" y="174" width="170" height="59"/>
+                                            <rect key="frame" x="102.66666666666669" y="174" width="170" height="59"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="170" id="HRy-dK-2vT"/>
                                                 <constraint firstAttribute="height" constant="59" id="Wmh-wt-60m"/>
@@ -476,25 +473,25 @@
                                                     <rect key="frame" x="19" y="28" width="318" height="120"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tel: (555)-555-5555" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R5D-bB-VeD">
+                                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tel: (555)-555-5555" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R5D-bB-VeD">
                                                             <rect key="frame" x="0.0" y="0.0" width="318" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
-                                                        <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email: info@ship-packages.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rR-YK-COc">
+                                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email: info@ship-packages.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rR-YK-COc">
                                                             <rect key="frame" x="0.0" y="30" width="318" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
-                                                        <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Website: ship-packages.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UWC-Qd-Wyv">
+                                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Website: ship-packages.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UWC-Qd-Wyv">
                                                             <rect key="frame" x="0.0" y="60" width="318" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
-                                                        <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Address: RIT" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mpg-L4-VS7">
+                                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Address: RIT" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mpg-L4-VS7">
                                                             <rect key="frame" x="0.0" y="90" width="318" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
@@ -634,16 +631,16 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="baX-WT-aOb">
-                                            <rect key="frame" x="51" y="42" width="273" height="43"/>
+                                            <rect key="frame" x="51" y="42" width="273.33333333333331" height="43"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6n-M6-kic">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="NEW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6n-M6-kic">
                                                     <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="43"/>
                                                     <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="35"/>
                                                     <color key="textColor" red="1" green="0.5395065953" blue="0.21255351480000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVB-LR-Mwm">
-                                                    <rect key="frame" x="92.666666666666643" y="0.0" width="180.33333333333337" height="43"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ACCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVB-LR-Mwm">
+                                                    <rect key="frame" x="92.666666666666671" y="0.0" width="180.66666666666663" height="43"/>
                                                     <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="35"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -950,7 +947,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fuU-xw-rTn">
-                                            <rect key="frame" x="38" y="263" width="298" height="51"/>
+                                            <rect key="frame" x="38" y="263" width="299" height="51"/>
                                             <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="dIl-CR-JQt"/>
@@ -963,7 +960,7 @@
                                             <color key="tintColor" red="1" green="0.54117647059999996" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </segmentedControl>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qnc-M9-B8b" customClass="BoldBorderTextView" customModule="ShipPackages" customModuleProvider="target">
-                                            <rect key="frame" x="38" y="397" width="298" height="249"/>
+                                            <rect key="frame" x="38" y="397" width="299" height="249"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -979,7 +976,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3f-Nf-Vvb">
-                                            <rect key="frame" x="42" y="68" width="294" height="43"/>
+                                            <rect key="frame" x="43" y="68" width="294" height="43"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHIP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvT-J9-JUE">
                                                     <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="43"/>
@@ -1227,7 +1224,7 @@
                                             </connections>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0R0-hh-Y8z">
-                                            <rect key="frame" x="40" y="72" width="294" height="43"/>
+                                            <rect key="frame" x="40.666666666666657" y="72" width="294" height="43"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHIP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4Q-eW-l4k">
                                                     <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="43"/>
@@ -1236,7 +1233,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PACKAGES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDX-52-nbp">
-                                                    <rect key="frame" x="92.666666666666643" y="0.0" width="201.33333333333337" height="43"/>
+                                                    <rect key="frame" x="92.6666666666667" y="0.0" width="201.33333333333337" height="43"/>
                                                     <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="35"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -1399,6 +1396,7 @@
         <!--Navigation Controller-->
         <scene sceneID="DhG-u3-IDV">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="34K-ys-oqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="CustomerHomeVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qne-Kr-64t" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IlW-MY-MXW">
@@ -1410,23 +1408,22 @@
                         <segue destination="8J2-aj-jdJ" kind="relationship" relationship="rootViewController" id="OHs-J2-3oH"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="34K-ys-oqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3053.5999999999999" y="-163.30049261083744"/>
+            <point key="canvasLocation" x="2753" y="-54"/>
         </scene>
     </scenes>
     <resources>
         <image name="backgroundTruck.jpg" width="626" height="500"/>
         <image name="centerMapBtn" width="62" height="62"/>
-        <image name="facebook" width="48" height="48"/>
-        <image name="instagram" width="48" height="48"/>
+        <image name="facebook" width="36" height="36"/>
+        <image name="instagram" width="36" height="36"/>
         <image name="menuSliderBtn" width="30" height="24"/>
         <image name="pexels-photo-24821" width="2992" height="2000"/>
-        <image name="sedan" width="50" height="50"/>
-        <image name="truck" width="50" height="50"/>
+        <image name="sedan" width="40" height="40"/>
+        <image name="truck" width="40" height="40"/>
         <image name="truck_background1.jpg" width="630" height="420"/>
-        <image name="twitter" width="48" height="48"/>
-        <image name="van" width="50" height="50"/>
-        <image name="youtube" width="48" height="48"/>
+        <image name="twitter" width="36" height="36"/>
+        <image name="van" width="40" height="40"/>
+        <image name="youtube" width="36" height="36"/>
     </resources>
 </document>

@@ -14,6 +14,7 @@ enum userType {
 import UIKit
 import Firebase
 import SideMenuSwift
+let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
 let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 @UIApplicationMain
@@ -33,6 +34,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        // Override point for customization after application launch.
         
         SideMenuController.preferences.basic.position = .under
+//        let contentViewController = storyboard.instantiateViewController(withIdentifier: "DriverVC") as! DriverVC
+//        let menuViewController = storyboard.instantiateViewController(withIdentifier: "LeftSidePanelVC") as! LeftSidePanelVC
+//        
+//        let _sideMenuController = SideMenuController(contentViewController: contentViewController,
+//                                                     menuViewController: menuViewController)
+//            window?.rootViewController = _sideMenuController
+//
+//        
+//            window?.makeKeyAndVisible()
+
         return true
     }
     
