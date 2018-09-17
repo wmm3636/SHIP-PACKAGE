@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 // MARK: SideMenuController
 
 /// A container view controller owns a menu view controller and a content view controller.
@@ -147,6 +149,8 @@ open class SideMenuController: UIViewController {
     // you must not override this method."
     open override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         // Setup from the IB
         if isInitiatedFromStoryboard {

@@ -1,20 +1,20 @@
 //
-//  DriverRequistListVC.swift
+//  CustomerRViewController.swift
 //  ShipPackages
 //
-//  Created by Waleed Mastour on 9/14/18.
+//  Created by Waleed Mastour on 4/21/18.
 //  Copyright © 2018 Waleed Mastour. All rights reserved.
 //
 
 import UIKit
 import Firebase
-import SideMenuSwift
+class CustomerRViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-class DriverRequistListVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     
     @IBOutlet weak var noteTable: UITableView!
     var data: [String] = []
-    var keys: [String] = []
+     var keys: [String] = []
     var fileURL:URL!
     var selectedRow: Int = -1
     var changedText:String = ""
@@ -24,31 +24,28 @@ class DriverRequistListVC: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        let query = self.ref.child("orders").queryOrdered(byChild: "assignedTo").queryEqual(toValue: "none")
+        let user = Auth.auth().currentUser
+        let uid = user?.uid
+        let query = self.ref.child("orders").queryOrdered(byChild: "userId").queryEqual(toValue: uid)
         query.observe(.value) { (snapshot) in
             
             for child in snapshot.children.allObjects as! [DataSnapshot]{
                 let dict = child.value as? [String: AnyObject] ?? [:]
                 self.data.append(dict["description"] as! String)
                 self.keys.append(child.key)
+                
             }
-            print("From the viewDidLoad")
-            print(self.data)
+            
             // Do any additional setup after loading the view, typically from a nib.
             self.noteTable.dataSource = self
             self.noteTable.delegate = self
-            self.title = "New Request"
+            self.title = "Order Details"
             self.navigationController?.navigationBar.prefersLargeTitles = true
             self.navigationItem.largeTitleDisplayMode = .always
-            //            let addReminderButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.self.addReminderText))
-            //            self.navigationItem.rightBarButtonItem = addReminderButton
-            //self.navigationItem.leftBarButtonItem = editButtonItem
-            print("here")
             let baseURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             self.fileURL = baseURL.appendingPathComponent("reminders.txt")
             self.loadReminder()
         }
-        
     }
     @objc func addReminderText(){
         if noteTable.isEditing {
@@ -87,7 +84,6 @@ class DriverRequistListVC: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func saveReminder(){
-        //        UserDefaults.standard.set(data, forKey: "reminders")
         let reminders = NSArray(array: data)
         do {
             try reminders.write(to: fileURL)
@@ -95,39 +91,21 @@ class DriverRequistListVC: UIViewController, UITableViewDataSource, UITableViewD
             print("Failed writing to file")
         }
     }
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        if selectedRow == -1 {
-    //            return
-    //        }
-    //        data[selectedRow] = changedText
-    //        if changedText == "" {
-    //            data.remove(at: selectedRow)
-    //        }
-    //        noteTable.reloadData()
-    //        saveReminder()
-    //    }
+
     func loadReminder(){
-        //        if let savedReminders:[String] = UserDefaults.standard.value(forKey: "reminders") as? [String]{
-        //            data = savedReminders
-        //            noteTable.reloadData()
-        //        }
         print(self.data)
         if let savedReminders:[String] = NSArray(contentsOf:fileURL) as? [String]{
-            // data = savedReminders
-            //noteTable.reloadData()
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "reminderDetails", sender: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let detailViewController: DriverRequistDetailsVC = (segue.destination as? DriverRequistDetailsVC)!
+        let detailViewController: CustomerRDetailViewController = (segue.destination as? CustomerRDetailViewController)!
         selectedRow = noteTable.indexPathForSelectedRow!.row
-        detailViewController.parentView = self
         detailViewController.key = self.keys[selectedRow]
-        detailViewController.setText(text: data[selectedRow])
+        detailViewController.parentView = self
+        
     }
-    
 
 }

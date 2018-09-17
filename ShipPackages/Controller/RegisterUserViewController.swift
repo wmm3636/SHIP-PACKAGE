@@ -91,13 +91,15 @@ class RegisterUserViewController: UIViewController, UITextFieldDelegate {
                 if let user = user {
                     
                     if self.segmentedControl.selectedSegmentIndex == 0 {
+                        appDelegate.cureentuserType = .custmer
                         let userData = ["firstName": firstName!, "lastName": lastName!] as [String: Any]
                         DataService.instance.createFirebaseDBUser(uid: user.user.uid, userData: userData, isDriver: false)
-                        let customerHomeVC = self.storyboard?.instantiateViewController(withIdentifier: "CustomerHomeVC")
+//                        let customerHomeVC = self.storyboard?.instantiateViewController(withIdentifier: "CustomerHomeVC")
                         
                         self.setRootUIwindow()
                     } else {
 //                        self.truckTypeControl.isHidden = false
+                        appDelegate.cureentuserType = .driver
                         let userData = ["firstName": firstName!, "lastName": lastName!, "userIsDriver": true, "isPickupModeEnabled": false, "driverIsOnTrip": false, "approved": false] as [String: Any]
                         DataService.instance.createFirebaseDBUser(uid: user.user.uid, userData: userData, isDriver: true)
                         self.setRootUIwindow()

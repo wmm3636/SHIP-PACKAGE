@@ -88,6 +88,13 @@ class LeftSidePanelVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                 sideMenuController?.setContentViewController(to: customerHomeVC!, animated: true, completion: {
                 })
                 sideMenuController?.hideMenu()
+            case "orderHistory":
+                let customerRViewController = self.storyboard?.instantiateViewController(withIdentifier: "CustomerRViewController")
+                
+                sideMenuController?.setContentViewController(to: customerRViewController!, animated: true, completion: {
+                })
+                sideMenuController?.hideMenu()
+                
             case "myProfile":
                 let profile = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
                 sideMenuController?.setContentViewController(to: profile, animated: true, completion: {

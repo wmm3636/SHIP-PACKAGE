@@ -50,7 +50,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     func setRootUIwindow(){
         if appDelegate.cureentuserType == .custmer{
             let _sideMenuController = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
-         
             appDelegate.window?.rootViewController = _sideMenuController
             appDelegate.window?.makeKeyAndVisible()
             

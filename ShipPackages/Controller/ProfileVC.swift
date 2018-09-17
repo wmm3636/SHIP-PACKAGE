@@ -13,9 +13,7 @@ import SideMenuSwift
 class ProfileVC: UIViewController {
 
     @IBOutlet weak var firstNameTextField: UITextField!
-    
     @IBOutlet weak var lastNameTextField: UITextField!
-    
     @IBOutlet weak var userTypeTextField: UITextField!
     
     var ref: DatabaseReference!
@@ -28,11 +26,24 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Auth.auth().currentUser)
         let user = Auth.auth().currentUser
         let uid = user?.uid
-        print("User ID:")
-        print(uid)
+        
+//        if appDelegate.cureentuserType == .driver {
+//            ref.child("drivers").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+//                let value = snapshot.value as? NSDictionary
+//                let firstName = value?["firstName"] as? String ?? ""
+//                let lastName = value?["lastName"] as? String ?? ""
+//                let userType = value?["userType"] as? String ?? ""
+//
+//                self.updateView(firstName: firstName, lastName:lastName, userType: userType)
+//
+//            }) { (error) in
+//                print(error.localizedDescription)
+//            }
+//        } else {
+//
+//        }
         
 //        ref.child("customers").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
 //            if snapshot.hasChild(uid!){

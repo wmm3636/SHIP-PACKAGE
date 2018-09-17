@@ -13,13 +13,15 @@ import CoreLocation
 import SideMenuSwift
 
 
-class CustomerThirdPageVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class CustomerThirdPageVC: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var pickupLocation: UITextField!
     
     @IBOutlet weak var dropoffLocation: UITextField!
     
     @IBOutlet weak var mapView: MKMapView!
+    
+    var driverList = [String]()
     
 //    var locationManager: CLLocationManager?
     var shippingInfo_  = shippingInfo()
@@ -28,6 +30,7 @@ class CustomerThirdPageVC: UIViewController, MKMapViewDelegate, CLLocationManage
 
 
     var tableView = UITableView()
+    var matchingItems: [MKMapItem] = [MKMapItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +39,23 @@ class CustomerThirdPageVC: UIViewController, MKMapViewDelegate, CLLocationManage
         
         manager = CLLocationManager()
         manager?.delegate = self
+        manager?.requestAlwaysAuthorization()
         manager?.desiredAccuracy = kCLLocationAccuracyBest
+        
+        ref = Database.database().reference()
+        let query = self.ref.child("drivers").queryOrdered(byChild: "userIsDriver").queryEqual(toValue: "true")
+        query.observe(.value) { (snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot]{
+                let dict = child.value as? [String: AnyObject] ?? [:]
+                self.driverList.append(dict["firstName"] as! String)
+            }
+        }
         
 //        locationManager = CLLocationManager()
 //        locationManager?.delegate = self
 //        locationManager?.requestAlwaysAuthorization()
-        pickupLocation.delegate = self
-        dropoffLocation.delegate = self
+//        pickupLocation.delegate = self
+//        dropoffLocation.delegate = self
 //        print(shippingInfo_)
         // Do any additional setup after loading the view.
     }
@@ -70,8 +83,7 @@ class CustomerThirdPageVC: UIViewController, MKMapViewDelegate, CLLocationManage
             let dl: String = dropoffLocation.text!
             let customerData = ["userId": uid, "time":time ,"vehicle": car,"description": desc, "pickuplocation": pl, "dropofflocation": dl,
                                 "served":"NO","assignedTo": "none"]
-//            self.ref.child("orders").child(uid!).updateChildValues(customerData)
-//            self.ref.child("orders").childByAutoId().setValue(customerData)
+            self.ref.child("orders").childByAutoId().setValue(customerData)
             self.displayAlertMessage(userMessage: "Your order has been added")
             let customerHomeVC = self.storyboard?.instantiateViewController(withIdentifier: "CustomerHomeVC")
             
@@ -81,6 +93,10 @@ class CustomerThirdPageVC: UIViewController, MKMapViewDelegate, CLLocationManage
             
         }
     }
+    func centerMapOnUserLocation(){
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 2000 * 2.0, 2000 * 2.0 )
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
     
     @IBAction func previousStepBtnTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -89,8 +105,7 @@ class CustomerThirdPageVC: UIViewController, MKMapViewDelegate, CLLocationManage
     
     
     @IBAction func centerMapBtnTapped(_ sender: Any) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 2000 * 2.0, 2000 * 2.0 )
-        mapView.setRegion(coordinateRegion, animated: true)
+        centerMapOnUserLocation()
     }
     
     func displayAlertMessage(userMessage : String) {
@@ -123,7 +138,7 @@ extension CustomerThirdPageVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == dropoffLocation || textField == pickupLocation {
-            //
+             performSearch()
             view.endEditing(true)
         }
         return true
@@ -133,16 +148,20 @@ extension CustomerThirdPageVC: UITextFieldDelegate {
         
     }
     
-//    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-//        centerMapOnUserLocation()
-//        return true
-//    }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        matchingItems = []
+        tableView.reloadData()
+        centerMapOnUserLocation()
+        return true
+    }
     
     func animateTableView(shouldShow: Bool) {
         if shouldShow {
             UIView.animate(withDuration: 0.2, animations: {
                 self.tableView.frame = CGRect(x: 20, y: 365, width: self.view.frame.width - 40, height: self.view.frame.height - 450)
             })
+            
+            
         } else {
             UIView.animate(withDuration: 0.2, animations: {
                 self.tableView.frame = CGRect(x: 20, y: self.view.frame.height, width: self.view.frame.width - 40, height: self.view.frame.height - 170)
@@ -157,9 +176,82 @@ extension CustomerThirdPageVC: UITextFieldDelegate {
     }
 }
 
+extension CustomerThirdPageVC: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        UpdateService.instance.updateUserLocation(withCoordinate: userLocation.coordinate)
+        UpdateService.instance.updateDriverLocation(withCoordinate: userLocation.coordinate)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? DriverAnnotation {
+            let identifier = "driver"
+            var view: MKAnnotationView
+            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.image = UIImage(named: "driverAnnotation")
+            return view
+        }
+        return nil
+    }
+    
+    //    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+    //        centerMapBtn.fadeTo(alphaValue: 1.0, withDuration: 0.2)
+    //    }
+    
+    func performSearch() {
+        matchingItems.removeAll()
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = dropoffLocation.text
+        request.region = mapView.region
+        
+        let search = MKLocalSearch(request: request)
+        
+        search.start { (response, error) in
+            if error != nil {
+                print(error.debugDescription)
+                //                self.showAlert(error.debugDescription)
+            } else if response!.mapItems.count == 0 {
+                print("No result!")
+                //                self.showAlert(ERROR_MSG_NO_MATCHES_FOUND)
+            } else {
+                for mapItem in response!.mapItems {
+                    self.matchingItems.append(mapItem as MKMapItem)
+                    self.tableView.reloadData()
+                    //                    self.shouldPresentLoadingView(false)
+                }
+            }
+        }
+        request.naturalLanguageQuery = pickupLocation.text
+        request.region = mapView.region
+        
+        //        let search = MKLocalSearch(request: request)
+        
+        search.start { (response, error) in
+            if error != nil {
+                print(error.debugDescription)
+                //                self.showAlert(error.debugDescription)
+            } else if response!.mapItems.count == 0 {
+                print("No result!")
+                //                self.showAlert(ERROR_MSG_NO_MATCHES_FOUND)
+            } else {
+                for mapItem in response!.mapItems {
+                    self.matchingItems.append(mapItem as MKMapItem)
+                    self.tableView.reloadData()
+                    //                    self.shouldPresentLoadingView(false)
+                }
+            }
+        }
+    }
+    
+}
+
+
 extension CustomerThirdPageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "locationCell ")
+        let mapItem = matchingItems[indexPath.row]
+        cell.textLabel?.text = mapItem.name
+        cell.detailTextLabel?.text = mapItem.placemark.title
+        return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -167,11 +259,12 @@ extension CustomerThirdPageVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return matchingItems.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         animateTableView(shouldShow: false)
+//        self.pickupLocation.text
         print("Selected!")
     }
     
